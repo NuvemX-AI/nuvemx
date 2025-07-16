@@ -1,26 +1,355 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-whatsapp: var(--whatsapp);
+  --color-disabled-bg: var(--disabled-bg);
+  --color-disabled-text: var(--disabled-text);
+  --color-cta-hover: var(--cta-hover);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite;
+  @keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+  --color-color-5: var(----color-5);
+  --color-color-4: var(----color-4);
+  --color-color-3: var(----color-3);
+  --color-color-2: var(----color-2);
+  --color-color-1: var(----color-1);
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+  @keyframes rainbow {
+  0% {
+    background-position: 0%;
+    }
+  100% {
+    background-position: 200%;
+    }
+  }
+  --animate-shiny-text: shiny-text 8s infinite;
+  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+  @keyframes ripple {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    }
+  50% {
+    transform: translate(-50%, -50%) scale(0.9);
+    }
+  }
+  --animate-move: move 5s linear infinite;
+
+  @keyframes move {
+    0% {
+      transform: translateX(-200px);
+    }
+    100% {
+      transform: translateX(200px);
+    }
+  }
+  @keyframes move {
+  0% {
+    transform: translateX(-200px);
+    }
+  100% {
+    transform: translateX(200px);
+    }
+  }
+  --animate-shine: shine var(--duration) infinite linear
+;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;}
+  50% {
+    background-position: 100% 100%;}
+  to {
+    background-position: 0% 0%;}}
+  @keyframes moveDot {
+  0%, 100% {
+    top: 10%;
+    right: 10%;}
+  25% {
+    top: 10%;
+    right: calc(100% - 35px);}
+  50% {
+    top: calc(100% - 30px);
+    right: calc(100% - 35px);}
+  75% {
+    top: calc(100% - 30px);
+    right: 10%;}}
+  @keyframes moveBackground {
+  from {
+    background-position: 0% 0%;}
+  to {
+    background-position: 0% -1000%;}}}
+
+:root {
+  --radius: 0.625rem;
+  /* Paleta NuvemX - Tema Claro */
+  --background: #FFFFFF;
+  --foreground: #171717; 
+  --card: #FFFFFF;
+  --card-foreground: #171717;
+  --popover: #FFFFFF;
+  --popover-foreground: #171717;
+
+  --primary: #171717;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F4F4F4; 
+  --secondary-foreground: #171717;
+  --muted: #F0F0F0; 
+  --muted-foreground: #6C757D; 
+
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+
+  --destructive: #EF4444;
+  --border: #F0F0F0; 
+  --input: #FFFFFF;
+  --ring: #ADB5BD;
+
+  --success: #12B76A;
+  --warning: #F59E0B;
+  --whatsapp: #25D366;
+
+  --disabled-bg: #E9ECEF;
+  --disabled-text: #ADB5BD;
+  --cta-hover: #111827;
+
+  --chart-1: oklch(0.646 0 0);
+  --chart-2: oklch(0.6 0 0);
+  --chart-3: oklch(0.398 0 0);
+  --chart-4: oklch(0.828 0 0);
+  --chart-5: oklch(0.769 0 0);
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #171717;
+  --sidebar-primary: #F4F4F4; 
+  --sidebar-primary-foreground: #171717;
+  --sidebar-accent: transparent;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-border: #F0F0F0;
+  --sidebar-ring: var(--ring);
+
+  /* Removed unused blue colors */
+  --white: #FFFFFF;
+  --black: #000000;
+  --transparent: transparent;
+
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
+  --speed: 2s; /* ADICIONADO PARA ANIMAÇÃO RAINBOW */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  /* Paleta NuvemX - Tema Escuro - SEM AZUL */
+  --background: #171717; 
+  --foreground: #FFFFFF; 
+  --card: #1f1f1f; 
+  --card-foreground: #FFFFFF;
+  --popover: #171717; 
+  --popover-foreground: #FFFFFF;
+
+  --primary: #F4F4F4; 
+  --primary-foreground: #171717; 
+
+  --secondary: #2e2e2e; 
+  --secondary-foreground: #F0F0F0; 
+  --muted: #2e2e2e;
+  --muted-foreground: #F0F0F0; 
+
+  --accent: var(--primary);
+  --accent-foreground: var(--primary-foreground);
+
+  --destructive: #EF4444;
+  --border: #2e2e2e; 
+  --input: #171717;
+  --ring: #D1D5DB;
+
+  --success: #12B76A;
+  --warning: #F59E0B;
+  --whatsapp: #25D366;
+
+  --disabled-bg: #2A2A2A;
+  --disabled-text: #4B5563;
+  --cta-hover: #E5E7EB;
+
+  --chart-1: oklch(0.3 0 0);
+  --chart-2: oklch(0.4 0 0);
+  --chart-3: oklch(0.5 0 0);
+  --chart-4: oklch(0.6 0 0);
+  --chart-5: oklch(0.7 0 0);
+
+  --sidebar: #171717;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #2e2e2e; 
+  --sidebar-primary-foreground: #F4F4F4;
+  --sidebar-accent: transparent;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2e2e2e;
+  --sidebar-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shiny-text {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -200% 0%;
+  }
+}
+
+/* Animações para ShimmerButton */
+@keyframes shimmer-slide {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-shiny-text {
+  animation: shiny-text 8s infinite;
+}
+
+/* FORÇA REMOÇÃO DE TODAS AS CORES AZUIS NO ADMIN */
+.dark [data-slot="card"] {
+  background-color: #1f1f1f !important;
+  color: #ffffff !important;
+}
+
+/* Remove azul de elementos específicos */
+.dark .text-blue-600,
+.dark .text-blue-700,
+.dark .text-blue-800,
+.dark .text-blue-900 {
+  color: #ffffff !important;
+}
+
+.dark .bg-blue-100,
+.dark .bg-blue-200,
+.dark .bg-blue-600,
+.dark .bg-blue-700,
+.dark .bg-blue-800,
+.dark .bg-blue-900 {
+  background-color: #2e2e2e !important;
+}
+
+/* Força todos os inputs e selects */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #2e2e2e !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Força navegação */
+.dark nav {
+  background-color: #171717 !important;
+}
+
+/* ELIMINAÇÃO ESPECÍFICA DE AZUIS */
+.dark {
+  --blue-800: #1f1f1f !important;
+  --blue-900: #171717 !important;
+  --slate-800: #1f1f1f !important;
+  --slate-900: #171717 !important;
+}
+
+/* Força cores para cards */
+.dark .bg-card {
+  background-color: #1f1f1f !important;
+  color: #ffffff !important;
+}
+
+.dark .text-card-foreground {
+  color: #ffffff !important;
 }
